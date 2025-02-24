@@ -7,43 +7,71 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
  
 Authors in chronological order of contribution:
 Tim Riedel
-Author 2
+Emaan Chhatriwala
  
 Further Information:
-http://diystream.cns.utexas.edu/
-
+http://cns.utexas.edu/fri
+ 
 Research Educator:
 Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-blah, blah, blah,
+The goal of this code is to make a practice diagnostic app that can ask the user for their experience with common symptoms of diabetes and give the user a "likelihood" score of their chance of having diabetes.
  
 Known Issues:
-blah, blah, blah, blah
-Ignore this error message if you see it using the javaScript console: Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'interest-cohort'.
+Some issues with this code is that symptoms of diabetes can be variable, and people may have diabetes and not show certain symptoms (or vice versa). Additionally, this app is not actually able to diagnose anyone without proper medical tests, so it should not be used in a serious manner.
 
-References:
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
 	
-<head> 
-	<title>Hello World</title>  
-]	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<link rel="stylesheet" href="w3.css">
-	<link rel="stylesheet" href="w3-colors-flat.css">
-</head> 
+   <head> 
+      <title>Hello World</title>
+	   <!-- Title of the page -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <link rel="stylesheet" href="w3.css">
+      <link rel="stylesheet" href="w3-colors-flat.css">
+   </head> 
+
 
 <script>
+        var diabetes_count = 0;
+	// counts diabetes responses, initial value set to zero
+        var other_count = 0;
+	// counts other responses, initial value set to zero
 
-	//YOUR JAVASCRIPT GOES HERE
 
-</script>	
+        function diabetesAdd(){
+            diabetes_count = diabetes_count + 1;
+		//alert(allergy_count); not needed
+		
+	// Adds 1 to diabetes tracker variable when respective button is pressed
+        }
+
+        function otherAdd(){
+            other_count = other_count + 1;
+	// Adds 1 to other tracker variable when respective button is pressed
+        }
+
+	function showResult() {
+	
+	        // Calculate percentages
+	        var diabetesPercent = (diabetes_count / 4) * 100;
+	        var otherPercent = (other_count / 4) * 100;
+	
+	        // Get the results paragraph and update content
+		// Id "results" needs to match the <p> id called in the results paragraph
+	        var resultText = document.getElementById("results");
+		// joins text together using + signs, adds results from diabetes/other percent variables into the the text.
+	        resultText.innerHTML = "Probability it is diabetes = " + diabetesPercent + "%" + "<br>Probability it is not diabetes = " + otherPercent + "%";
+    	}
+
+  </script>
 
 
-<!-- THIS STYLE CODE HELPS MAKE YOUR APP LOOK GOOD. PROBABLY DONT MESS WITH IT -->
+<!-- sets up style and page margins -->
 <style>	
 .body {
      margin: 0em;
@@ -67,9 +95,83 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 </style>
 
 <body>
+<div id="header" class="w3-container w3-flat-carrot">
+	<h1>Diabetes or not?</h1>
+</div>
+	<!-- Intro text provided on first page -->
+<div id="content" class="w3-container">
+	<p>Are you feeling like you might have diabetes but aren't sure if all the symptoms match? Take this short quiz to find out!</p>
 	
-	<!-- HERE IS WHERE ALL OF YOUR HTML PAGES GO -->
-	REPLACE THIS TEXT
+	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a>
 	
+	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
+ 	
+	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+<!-- obvious disclaimer -->
+<!-- Page 1 -->
+<div class="page" id="one">
+    <div id="header" class="w3-container w3-flat-carrot">
+        <h1>Question 1</h1>
+    </div>
+    <div id="content" class="w3-container">
+        <p>Do you experience excessive thirst and urination?</p>    
+        <a href="#two" onclick="diabetesAdd();" class="w3-btn w3-black">Yes</a>
+        <a href="#two" onclick="otherAdd();" class="w3-btn w3-black">No</a>
+    </div><!-- First question, answering Yes adds a counter to the diabetes_count variable. Answering no adds a counter to the other_count variable -->
+</div>
+
+<!-- Page 2 -->
+<div class="page" id="two">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Question 2</h1>
+    </div>
+    <div id="content" class="w3-container">
+        <p>Have you noticed unexplained weight loss?</p>    
+        <a href="#three" onclick="diabetesAdd();" class="w3-btn w3-black">Yes</a>
+        <a href="#three" onclick="otherAdd();" class="w3-btn w3-black">No</a>
+    </div><!-- second question -->
+</div>
+
+<!-- Page 3 -->
+<div class="page" id="three">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Question 3</h1>
+    </div>
+    <div id="content" class="w3-container">
+        <p>Do you often feel fatigued or tired throughout the day?</p>    
+        <a href="#four" onclick="diabetesAdd();" class="w3-btn w3-black">Yes</a>
+        <a href="#four" onclick="otherAdd();" class="w3-btn w3-black">No</a>
+    </div><!-- third question -->
+</div>
+
+<!-- Page 4 -->
+<div class="page" id="four">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Question 4</h1>
+    </div>
+    <div id="content" class="w3-container">
+        <p>Do you ever feel tingling or numbness in your hands and feet?</p>    
+        <a href="#result" onclick="diabetesAdd();" class="w3-btn w3-black">Yes</a>
+        <a href="#result" onclick="otherAdd();" class="w3-btn w3-black">No</a>
+    </div><!-- fourth question -->
+</div>
+
+	
+<!-- Result Page -->
+<div class="page" id="result">
+    <div class="w3-container w3-flat-carrot">
+        <h1>Result</h1>
+    </div>
+    <div id="content" class="w3-container">
+        <p id="results"></p>
+        <button onclick="showResult()" class="w3-btn w3-black">Show Result</button>
+	    <!-- calls back to the showResult() function defined at the top. <p id = results> links it to that function. -->
+    </div>
+</div>
+
+<footer class="w3-bottom w3-container w3-flat-carrot">
+	<p>DIY!</p>
+</footer>
+<!-- adds DIY! to the footer -->
 </body>
 </html>
